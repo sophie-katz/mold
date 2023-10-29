@@ -13,15 +13,8 @@
 # You should have received a copy of the GNU General Public License along with Mold. If not, see
 # <https://www.gnu.org/licenses/>.
 
-# Yarn
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-!.yarn/cache
-.pnp.*
+# Bun.JS
+/node_modules/
 
 # TypeScript
 /dist

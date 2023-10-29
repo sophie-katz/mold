@@ -1,10 +1,12 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "strict": true,
-        "outDir": "./dist"
-    },
-    "include": ["./src/**/*.ts"],
-    "exclude": ["./node_modules"]
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "outDir": "./dist",
+    "types": ["bun-types"]
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./node_modules"]
 }
