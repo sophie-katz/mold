@@ -15,25 +15,22 @@
 
 import { describe, expect, test } from 'bun:test';
 import { TemplateFileName } from './template-file-name';
-import * as handlebars from 'handlebars';
 
 describe('Rendering', () => {
   test('Empty', () => {
-    expect(new TemplateFileName(handlebars.compile('')).render({})).toEqual('');
+    expect(new TemplateFileName('').render({})).toEqual('');
   });
 
   test('No templating', () => {
-    expect(new TemplateFileName(handlebars.compile('hello, world')).render({})).toEqual(
-      'hello, world',
-    );
+    expect(new TemplateFileName('hello, world').render({})).toEqual('hello, world');
   });
 
   test('With variables', () => {
     expect(
-      new TemplateFileName(handlebars.compile('{{ x }}, {{ y }}')).render({
+      new TemplateFileName('{{ x }}, {{ y }}').render({
         x: 'hello',
         y: 'world',
-      }),
+      })
     ).toEqual('hello, world');
   });
 });

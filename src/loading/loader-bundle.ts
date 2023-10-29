@@ -13,25 +13,21 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { TemplateVariables } from './template-variables';
-import * as Handlebars from 'handlebars';
+import { TemplateDirectory } from '../domain/template-directory';
+import * as path from 'path';
+import { Loader } from './loader';
 
 /**
- * Abstract class representing a template file.
+ * Loader that loads a compiled bundle.
  */
-export class TemplateFileName {
+export class LoaderBundle implements Loader {
   /**
    * Constructor.
-   * @param template - A Handlebars template.
+   * @param pathTemplate The path to the template bundle directory.
    */
-  constructor(private readonly template: string) {}
+  constructor(public readonly pathTemplate: string) {}
 
-  /**
-   * Renders the templated file name.
-   * @param variables - Variables and their values to pass in when rendering templates.
-   * @returns A rendered string file name.
-   */
-  public render(variables: TemplateVariables): string {
-    return Handlebars.compile(this.template)(variables);
+  public async load(): Promise<TemplateDirectory> {
+    return JSON.parse(await Bun.file(path.join(this.pathTemplate, 'template.json')).text());
   }
 }

@@ -15,7 +15,6 @@
 
 import { describe, expect, test } from 'bun:test';
 import { TemplateFileContentRaw, TemplateFileHandlebars } from './template-file-content';
-import * as handlebars from 'handlebars';
 
 describe('Rendering', () => {
   describe('Raw', () => {
@@ -30,18 +29,16 @@ describe('Rendering', () => {
 
   describe('Handlebars', () => {
     test('Empty', () => {
-      expect(new TemplateFileHandlebars(handlebars.compile('')).render({})).toEqual('');
+      expect(new TemplateFileHandlebars('').render({})).toEqual('');
     });
 
     test('No templating', () => {
-      expect(new TemplateFileHandlebars(handlebars.compile('hello, world')).render({})).toEqual(
-        'hello, world'
-      );
+      expect(new TemplateFileHandlebars('hello, world').render({})).toEqual('hello, world');
     });
 
     test('With variables', () => {
       expect(
-        new TemplateFileHandlebars(handlebars.compile('{{ x }}, {{ y }}')).render({
+        new TemplateFileHandlebars('{{ x }}, {{ y }}').render({
           x: 'hello',
           y: 'world',
         })

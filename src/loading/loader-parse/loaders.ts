@@ -19,7 +19,6 @@ import { TemplateFileName } from '../../domain/template-file-name';
 import { TemplateFile } from '../../domain/template-file';
 import { TemplateFileContentRaw, TemplateFileHandlebars } from '../../domain/template-file-content';
 import * as path from 'path';
-import * as handlebars from 'handlebars';
 import { TemplateDirectory } from '../../domain/template-directory';
 import * as fsPromises from 'fs/promises';
 import { ErrorLoaderParseFileContentLength } from './errors';
@@ -38,7 +37,7 @@ export function loadFileName(pathFile: string, limitTracker: LimitTracker): Temp
   limitTracker.trackMemoryUsage(pathBasename.length);
 
   // Return results
-  return new TemplateFileName(handlebars.compile(pathBasename));
+  return new TemplateFileName(pathBasename);
 }
 
 /**
@@ -154,9 +153,7 @@ export async function loadFileHandlebars(
 ): Promise<TemplateFile> {
   return new TemplateFile(
     loadFileName(pathWithoutHandlebarsExtension, limitTracker),
-    new TemplateFileHandlebars(
-      handlebars.compile(await loadFileHelper(pathFile, options, limitTracker))
-    )
+    new TemplateFileHandlebars(await loadFileHelper(pathFile, options, limitTracker))
   );
 }
 

@@ -14,6 +14,7 @@
 // <https://www.gnu.org/licenses/>.
 
 import { TemplateVariables } from './template-variables';
+import * as Handlebars from 'handlebars';
 
 /**
  * An interface for renderable file contents.
@@ -36,7 +37,8 @@ export class TemplateFileContentRaw implements TemplateFileContent {
    */
   constructor(private readonly content: string) {}
 
-  public render(_: TemplateVariables): string {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public render(variables: TemplateVariables): string {
     return this.content;
   }
 }
@@ -47,12 +49,11 @@ export class TemplateFileContentRaw implements TemplateFileContent {
 export class TemplateFileHandlebars implements TemplateFileContent {
   /**
    * Constructor.
-   * @param template - A compiled handlebars template. Use `Handlebars.compile(...)` to compile
-   *                   the template before passing it in.
+   * @param template - A Handlebars template.
    */
-  constructor(private readonly template: any) {}
+  constructor(private readonly template: string) {}
 
   public render(variables: TemplateVariables): string {
-    return this.template(variables);
+    return Handlebars.compile(this.template)(variables);
   }
 }

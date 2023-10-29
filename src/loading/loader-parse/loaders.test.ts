@@ -308,8 +308,6 @@ describe('Load directory', () => {
       );
 
       expect(templateDirectory.children.length).toEqual(0);
-
-      console.log(pathDirectory);
     } finally {
       await fsPromises.rm(pathDirectory, { recursive: true });
     }

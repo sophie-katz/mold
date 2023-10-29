@@ -31,11 +31,9 @@ export class LoaderParse implements Loader {
   /**
    * Constructor.
    * @param pathTemplate The path to the template directory.
+   * @param options Options to configure the loader.
    */
-  constructor(
-    public readonly pathTemplate: string,
-    options?: LoaderParseOptions,
-  ) {
+  constructor(public readonly pathTemplate: string, options?: LoaderParseOptions) {
     this.options = {
       ...defaultOptions,
       ...options,
