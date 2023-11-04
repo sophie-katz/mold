@@ -21,7 +21,7 @@ import type { TemplateFileName } from './template-file-name';
  */
 export class TemplateDirectory {
   /**
-   *
+   * Constructor.
    * @param pathRelative - The relative path to the directory in the project.
    * @param children - The files and directories in the directory.
    */

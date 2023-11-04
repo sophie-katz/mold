@@ -16,3 +16,5 @@ You should have received a copy of the GNU General Public License along with Mol
 -->
 
 # Mold
+
+Mold is a templating tool for projects.
