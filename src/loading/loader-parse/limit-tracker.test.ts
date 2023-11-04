@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { describe, expect, test } from 'bun:test';
+import { describe, test, expect } from 'vitest';
 import { LimitTracker } from './limit-tracker';
 
 test('No limits', () => {
@@ -23,27 +23,27 @@ test('No limits', () => {
 describe('File count', () => {
   test('Limit is zero', () => {
     expect(() => new LimitTracker({ maxFileCount: 0 })).toThrow(
-      'limit for file count must be positive, not 0'
+      'limit for file count must be positive, not 0',
     );
   });
 
   test('Limit is negative', () => {
     expect(() => new LimitTracker({ maxFileCount: -1 })).toThrow(
-      'limit for file count must be positive, not -1'
+      'limit for file count must be positive, not -1',
     );
   });
 
   test('Track zero', () => {
     const limitTracker = new LimitTracker({ maxFileCount: 1 });
     expect(() => limitTracker.trackFileCount(0)).toThrow(
-      'count for file count must be positive, not 0'
+      'count for file count must be positive, not 0',
     );
   });
 
   test('Track negative', () => {
     const limitTracker = new LimitTracker({ maxFileCount: 1 });
     expect(() => limitTracker.trackFileCount(-1)).toThrow(
-      'count for file count must be positive, not -1'
+      'count for file count must be positive, not -1',
     );
   });
 
@@ -60,7 +60,7 @@ describe('File count', () => {
   test('Track more than limit', () => {
     const limitTracker = new LimitTracker({ maxFileCount: 1 });
     expect(() => limitTracker.trackFileCount(2)).toThrow(
-      'maximum file count limit exceeded: 1 file and/or directory'
+      'maximum file count limit exceeded: 1 file and/or directory',
     );
   });
 
@@ -75,7 +75,7 @@ describe('File count', () => {
     limitTracker.trackFileCount(1);
     limitTracker.trackFileCount(1);
     expect(() => limitTracker.trackFileCount(1)).toThrow(
-      'maximum file count limit exceeded: 2 files and/or directories'
+      'maximum file count limit exceeded: 2 files and/or directories',
     );
   });
 });
@@ -83,27 +83,27 @@ describe('File count', () => {
 describe('Memory usage', () => {
   test('Limit is zero', () => {
     expect(() => new LimitTracker({ maxMemoryUsage: 0 })).toThrow(
-      'limit for memory usage must be positive, not 0'
+      'limit for memory usage must be positive, not 0',
     );
   });
 
   test('Limit is negative', () => {
     expect(() => new LimitTracker({ maxMemoryUsage: -1 })).toThrow(
-      'limit for memory usage must be positive, not -1'
+      'limit for memory usage must be positive, not -1',
     );
   });
 
   test('Track zero', () => {
     const limitTracker = new LimitTracker({ maxMemoryUsage: 1 });
     expect(() => limitTracker.trackMemoryUsage(0)).toThrow(
-      'count for memory usage must be positive, not 0'
+      'count for memory usage must be positive, not 0',
     );
   });
 
   test('Track negative', () => {
     const limitTracker = new LimitTracker({ maxMemoryUsage: 1 });
     expect(() => limitTracker.trackMemoryUsage(-1)).toThrow(
-      'count for memory usage must be positive, not -1'
+      'count for memory usage must be positive, not -1',
     );
   });
 
@@ -120,7 +120,7 @@ describe('Memory usage', () => {
   test('Track more than limit', () => {
     const limitTracker = new LimitTracker({ maxMemoryUsage: 1 });
     expect(() => limitTracker.trackMemoryUsage(2)).toThrow(
-      'maximum memory usage limit exceeded: 1 byte (0.000 MB)'
+      'maximum memory usage limit exceeded: 1 byte (0.000 MB)',
     );
   });
 
@@ -135,7 +135,7 @@ describe('Memory usage', () => {
     limitTracker.trackMemoryUsage(1);
     limitTracker.trackMemoryUsage(1);
     expect(() => limitTracker.trackMemoryUsage(1)).toThrow(
-      'maximum memory usage limit exceeded: 2 bytes (0.000 MB)'
+      'maximum memory usage limit exceeded: 2 bytes (0.000 MB)',
     );
   });
 });

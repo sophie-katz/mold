@@ -14,20 +14,25 @@
 // <https://www.gnu.org/licenses/>.
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [
-    100
-  ],
-  "cSpell.words": [
-    "renderable",
-    "templating"
-  ],
-  "cSpell.ignoreWords": [
-    "Katz",
-    "bunx"
-  ],
-  "[typescript]": {
+  "editor.rulers": [100],
+  "cSpell.words": ["renderable", "templating"],
+  "cSpell.ignoreWords": ["Katz"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.enable": true,
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "eslint.experimental.useFlatConfig": true,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/node_modules": true
+  },
+  "eslint.nodePath": ".yarn/sdks",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vitest.enable": true,
+  "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.experimental.useFlatConfig": true
+  "files.associations": {
+    ".prettierignore": "ignore"
+  }
 }

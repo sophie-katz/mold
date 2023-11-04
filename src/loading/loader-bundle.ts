@@ -16,6 +16,8 @@
 import { TemplateDirectory } from '../domain/template-directory';
 import * as path from 'path';
 import { Loader } from './loader';
+import * as fsPromises from 'fs/promises';
+import { encoding } from '../bundling';
 
 /**
  * Loader that loads a compiled bundle.
@@ -28,6 +30,10 @@ export class LoaderBundle implements Loader {
   constructor(public readonly pathTemplate: string) {}
 
   public async load(): Promise<TemplateDirectory> {
-    return JSON.parse(await Bun.file(path.join(this.pathTemplate, 'template.json')).text());
+    return JSON.parse(
+      await fsPromises.readFile(path.join(this.pathTemplate, 'template.json'), {
+        encoding,
+      }),
+    );
   }
 }

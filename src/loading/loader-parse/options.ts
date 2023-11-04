@@ -56,10 +56,18 @@ export interface LoaderParseOptions {
    * * The file sizes of all files in the template.
    */
   maxMemoryUsage?: number;
+
+  /**
+   * The encoding to use for reading template files.
+   */
+  encoding?: BufferEncoding;
 }
+
+export const encoding: BufferEncoding = 'utf-8';
 
 export const defaultOptions: LoaderParseOptions = {
   handlebarsExtension: '.handlebars',
   maxFileCount: 1000,
   maxMemoryUsage: 1024 * 1024 * 128, // 128 MB
+  encoding,
 };

@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { describe, expect, test } from 'bun:test';
+import { describe, test, expect } from 'vitest';
 import { TemplateFileContentRaw, TemplateFileHandlebars } from './template-file-content';
 
 describe('Rendering', () => {
@@ -41,7 +41,7 @@ describe('Rendering', () => {
         new TemplateFileHandlebars('{{ x }}, {{ y }}').render({
           x: 'hello',
           y: 'world',
-        })
+        }),
       ).toEqual('hello, world');
     });
   });

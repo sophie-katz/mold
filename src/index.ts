@@ -13,8 +13,4 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-if (typeof Bun === 'undefined' || !Bun) {
-  throw new Error('Mold must be run with Bun.JS instead of Node.JS');
-}
-
 console.log('hi');

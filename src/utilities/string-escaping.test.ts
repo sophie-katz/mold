@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { expect, test } from 'bun:test';
+import { test, expect } from 'vitest';
 import { escapeString } from './string-escaping';
 
 test('Empty', () => {
@@ -26,7 +26,7 @@ test('No special chars', () => {
 
 test('All special chars', () => {
   expect(escapeString('\x00\x01\x07\b\f\n\r\t\v\\\x1f ~\x7f')).toEqual(
-    '\\0\\x01\\a\\b\\f\\n\\r\\t\\v\\\\\\x1f ~\\x7f'
+    '\\0\\x01\\a\\b\\f\\n\\r\\t\\v\\\\\\x1f ~\\x7f',
   );
 });
 

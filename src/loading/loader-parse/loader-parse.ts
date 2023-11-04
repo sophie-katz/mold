@@ -32,7 +32,10 @@ export class LoaderParse implements Loader {
    * Constructor.
    * @param options Options to configure the loader.
    */
-  constructor(private readonly configFileDirectory: string, options: LoaderParseOptions) {
+  constructor(
+    private readonly configFileDirectory: string,
+    options: LoaderParseOptions,
+  ) {
     this.options = {
       ...defaultOptions,
       ...options,
@@ -45,7 +48,7 @@ export class LoaderParse implements Loader {
     return await loadDirectory(
       this.options.sourcePath ?? this.configFileDirectory,
       this.options,
-      limitTracker
+      limitTracker,
     );
   }
 }

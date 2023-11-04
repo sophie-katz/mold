@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
+import { test, expect } from 'vitest';
 import { Loader } from './loading/loader';
 import { LoaderParse } from './loading/loader-parse/loader-parse';
-import { expect, test } from 'bun:test';
 import { bundleTemplateJSON } from './bundling';
 import * as os from 'os';
 import * as path from 'path';
@@ -23,22 +23,22 @@ import * as fsPromises from 'fs/promises';
 import { LoaderBundle } from './loading/loader-bundle';
 
 test('Simple', async () => {
-  const loader: Loader = new LoaderParse('examples/simple');
+  const loader: Loader = new LoaderParse('examples/simple', {});
 
   const templateDirectory = await loader.load();
 
   const pathBundleDirectory = await fsPromises.mkdtemp(
-    path.join(os.tmpdir(), 'mold-bundle-simple-')
+    path.join(os.tmpdir(), 'mold-bundle-simple-'),
   );
 
   try {
     await bundleTemplateJSON(templateDirectory, path.join(pathBundleDirectory, 'simple'));
 
     expect(
-      (await fsPromises.stat(path.join(pathBundleDirectory, 'simple'))).isDirectory()
+      (await fsPromises.stat(path.join(pathBundleDirectory, 'simple'))).isDirectory(),
     ).toBeTruthy();
     expect(
-      (await fsPromises.stat(path.join(pathBundleDirectory, 'simple/template.json'))).isFile()
+      (await fsPromises.stat(path.join(pathBundleDirectory, 'simple/template.json'))).isFile(),
     ).toBeTruthy();
 
     const loader: Loader = new LoaderBundle(path.join(pathBundleDirectory, 'simple'));

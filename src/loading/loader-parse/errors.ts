@@ -28,12 +28,12 @@ export class ErrorLoaderParseFileContentLength extends Error {
   constructor(
     public readonly path: string,
     public readonly maxLength: number,
-    public readonly actualLength: number
+    public readonly actualLength: number,
   ) {
     super(
       `max file content length limit exceeded for file: '${escapeString(
-        path
-      )}' (max length: ${maxLength}, actual length: ${actualLength})`
+        path,
+      )}' (max length: ${maxLength}, actual length: ${actualLength})`,
     );
     this.name = 'LoaderParseErrorFileContentLength';
   }
@@ -51,7 +51,7 @@ export class ErrorLoaderParseFileCount extends Error {
     super(
       `maximum file count limit exceeded: ${maxCount} ${
         maxCount == 1 ? 'file and/or directory' : 'files and/or directories'
-      }`
+      }`,
     );
     this.name = 'LoaderParseErrorFileCount';
   }
@@ -70,7 +70,7 @@ export class ErrorLoaderParseMemoryUsage extends Error {
     super(
       `maximum memory usage limit exceeded: ${maxMemoryUsage} byte${
         maxMemoryUsage == 1 ? '' : 's'
-      } (${(maxMemoryUsage / (1024 * 1024)).toFixed(3)} MB)`
+      } (${(maxMemoryUsage / (1024 * 1024)).toFixed(3)} MB)`,
     );
     this.name = 'LoaderParseErrorMemoryUsage';
   }

@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { describe, expect, test } from 'bun:test';
+import { describe, test, expect } from 'vitest';
 import {
   ErrorLoaderParseFileContentLength,
   ErrorLoaderParseFileCount,
@@ -24,7 +24,7 @@ describe('File content length', () => {
   test('Path with single quotes', () => {
     const error = new ErrorLoaderParseFileContentLength("path'with'single'quotes", 1, 2);
     expect(error.message).toBe(
-      "max file content length limit exceeded for file: 'path\\'with\\'single\\'quotes' (max length: 1, actual length: 2)"
+      "max file content length limit exceeded for file: 'path\\'with\\'single\\'quotes' (max length: 1, actual length: 2)",
     );
   });
 });

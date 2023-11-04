@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { describe, expect, test } from 'bun:test';
+import { describe, test, expect } from 'vitest';
 import { TemplateFileName } from './template-file-name';
 
 describe('Rendering', () => {
@@ -30,7 +30,7 @@ describe('Rendering', () => {
       new TemplateFileName('{{ x }}, {{ y }}').render({
         x: 'hello',
         y: 'world',
-      })
+      }),
     ).toEqual('hello, world');
   });
 });

@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { LoaderParseOptions } from './options';
+import { LoaderParseOptions, encoding } from './options';
 import { LimitTracker } from './limit-tracker';
 import { TemplateFileName } from '../../domain/template-file-name';
 import { TemplateFile } from '../../domain/template-file';
@@ -48,7 +48,7 @@ export function loadFileName(pathFile: string, limitTracker: LimitTracker): Temp
 export async function loadDirectory(
   pathDirectory: string,
   options: LoaderParseOptions,
-  limitTracker: LimitTracker
+  limitTracker: LimitTracker,
 ): Promise<TemplateDirectory> {
   // Track the directory as 1 file
   limitTracker.trackFileCount(1);
@@ -70,14 +70,14 @@ export async function loadDirectory(
       tasks.push(
         loadDirectory(directoryEntryPath, options, limitTracker).then((child) => {
           templateDirectory.children.push(child);
-        })
+        }),
       );
     } else {
       // If the child is a file, load it.
       tasks.push(
         loadFile(directoryEntryPath, options, limitTracker).then((child) => {
           templateDirectory.children.push(child);
-        })
+        }),
       );
     }
   }
@@ -99,7 +99,7 @@ export async function loadDirectory(
 export async function loadFile(
   pathFile: string,
   options: LoaderParseOptions,
-  limitTracker: LimitTracker
+  limitTracker: LimitTracker,
 ): Promise<TemplateFile> {
   // Validate the Handlebars extension option
   if (!options.handlebarsExtension) {
@@ -113,7 +113,7 @@ export async function loadFile(
       pathFile,
       pathFile.slice(0, -options.handlebarsExtension.length),
       options,
-      limitTracker
+      limitTracker,
     );
   } else {
     // ... or as a raw file
@@ -130,11 +130,11 @@ export async function loadFile(
 export async function loadFileRaw(
   pathFile: string,
   options: LoaderParseOptions,
-  limitTracker: LimitTracker
+  limitTracker: LimitTracker,
 ): Promise<TemplateFile> {
   return new TemplateFile(
     loadFileName(pathFile, limitTracker),
-    new TemplateFileContentRaw(await loadFileHelper(pathFile, options, limitTracker))
+    new TemplateFileContentRaw(await loadFileHelper(pathFile, options, limitTracker)),
   );
 }
 
@@ -149,11 +149,11 @@ export async function loadFileHandlebars(
   pathFile: string,
   pathWithoutHandlebarsExtension: string,
   options: LoaderParseOptions,
-  limitTracker: LimitTracker
+  limitTracker: LimitTracker,
 ): Promise<TemplateFile> {
   return new TemplateFile(
     loadFileName(pathWithoutHandlebarsExtension, limitTracker),
-    new TemplateFileHandlebars(await loadFileHelper(pathFile, options, limitTracker))
+    new TemplateFileHandlebars(await loadFileHelper(pathFile, options, limitTracker)),
   );
 }
 
@@ -167,26 +167,33 @@ export async function loadFileHandlebars(
 async function loadFileHelper(
   pathFile: string,
   options: LoaderParseOptions,
-  limitTracker: LimitTracker
+  limitTracker: LimitTracker,
 ): Promise<string> {
   // Open the file
-  const fileHandle = Bun.file(pathFile);
+  const fileHandle = await fsPromises.open(pathFile);
 
-  // Check the file content length
-  if (options.maxFileContentLength && fileHandle.size > options.maxFileContentLength) {
-    throw new ErrorLoaderParseFileContentLength(
-      pathFile,
-      options.maxFileContentLength,
-      fileHandle.size
-    );
+  try {
+    // Get stat
+    const fileStat = await fileHandle.stat();
+
+    // Check the file content length
+    if (options.maxFileContentLength && fileStat.size > options.maxFileContentLength) {
+      throw new ErrorLoaderParseFileContentLength(
+        pathFile,
+        options.maxFileContentLength,
+        fileStat.size,
+      );
+    }
+
+    // Track the file count
+    limitTracker.trackFileCount(1);
+
+    // Track the memory usage
+    limitTracker.trackMemoryUsage(fileStat.size);
+
+    // Load the file content
+    return await fileHandle.readFile({ encoding: options.encoding ?? encoding });
+  } finally {
+    await fileHandle.close();
   }
-
-  // Track the file count
-  limitTracker.trackFileCount(1);
-
-  // Track the memory usage
-  limitTracker.trackMemoryUsage(fileHandle.size);
-
-  // Load the file content
-  return await fileHandle.text();
 }

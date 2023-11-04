@@ -27,6 +27,6 @@ export class TemplateDirectory {
    */
   constructor(
     public readonly pathRelative: TemplateFileName,
-    public children: (TemplateDirectory | TemplateFile)[] = []
+    public children: (TemplateDirectory | TemplateFile)[] = [],
   ) {}
 }

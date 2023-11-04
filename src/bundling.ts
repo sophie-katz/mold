@@ -18,6 +18,11 @@ import * as path from 'path';
 import * as fsPromises from 'fs/promises';
 
 /**
+ * The encoding to use for bundling.
+ */
+export const encoding: BufferEncoding = 'utf-8';
+
+/**
  * Compiles a template into a bundle.
  *
  * Will create a file within `pathDestination` called `template.json` which contains the bundle
@@ -29,8 +34,12 @@ import * as fsPromises from 'fs/promises';
  */
 export async function bundleTemplateJSON(
   template: TemplateDirectory,
-  pathDestination: string
+  pathDestination: string,
 ): Promise<void> {
   await fsPromises.mkdir(pathDestination, { recursive: true });
-  await Bun.write(path.join(pathDestination, 'template.json'), JSON.stringify(template));
+  await fsPromises.writeFile(
+    path.join(pathDestination, 'template.json'),
+    JSON.stringify(template),
+    { encoding },
+  );
 }
