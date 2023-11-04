@@ -26,14 +26,13 @@ export class LoaderParse implements Loader {
   /**
    * Options to configure the loader.
    */
-  public readonly options: LoaderParseOptions;
+  private readonly options: LoaderParseOptions;
 
   /**
    * Constructor.
-   * @param pathTemplate The path to the template directory.
    * @param options Options to configure the loader.
    */
-  constructor(public readonly pathTemplate: string, options?: LoaderParseOptions) {
+  constructor(private readonly configFileDirectory: string, options: LoaderParseOptions) {
     this.options = {
       ...defaultOptions,
       ...options,
@@ -43,6 +42,10 @@ export class LoaderParse implements Loader {
   public async load(): Promise<TemplateDirectory> {
     const limitTracker = new LimitTracker(this.options);
 
-    return await loadDirectory(this.pathTemplate, this.options, limitTracker);
+    return await loadDirectory(
+      this.options.sourcePath ?? this.configFileDirectory,
+      this.options,
+      limitTracker
+    );
   }
 }

@@ -18,6 +18,21 @@
  */
 export interface LoaderParseOptions {
   /**
+   * The path to the template directory.
+   */
+  sourcePath?: string;
+
+  /**
+   * Included file patterns.
+   */
+  include?: string[];
+
+  /**
+   * Excluded file patterns.
+   */
+  exclude?: string[];
+
+  /**
    * The extension for Handlebars templated files.
    */
   handlebarsExtension?: string;

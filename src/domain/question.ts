@@ -14,9 +14,19 @@
 // <https://www.gnu.org/licenses/>.
 
 /**
- * Options that can be used to configure a question.
+ * The type of an answer to a question.
  */
-export interface QuestionOptions {
+export type Answer = string;
+
+/**
+ * Represents a question to ask as part of template configuration.
+ */
+export interface Question {
+  /**
+   * The key used to access the answer later on.
+   */
+  key: string;
+
   /**
    * The prompt to display to the user.
    */
@@ -41,11 +51,4 @@ export interface QuestionOptions {
    * A function that validates the original string answer.
    */
   validateAnswer?: (answer: string) => boolean;
-}
-
-/**
- * Represents a question to ask as part of template configuration.
- */
-export class Question {
-  constructor(public readonly options: QuestionOptions) {}
 }

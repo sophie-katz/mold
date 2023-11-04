@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { QuestionOptions } from '../domain/question';
+import { Question } from '../domain/question';
 import { LoaderParseOptions } from '../loading/loader-parse/options';
 
 /**
@@ -22,18 +22,30 @@ import { LoaderParseOptions } from '../loading/loader-parse/options';
  * **NOTE:** All tasks are run one at a time.
  */
 export interface TemplateConfiguration {
+  /**
+   * The name of the template.
+   */
   name: string;
 
+  /**
+   * A description for the template.
+   */
   description?: string;
 
-  version: string;
+  /**
+   * The template version.
+   */
+  templateVersion: string;
 
+  /**
+   * The version of Mold that the template is compatible with.
+   */
   moldVersion: string;
 
   /**
    * The list of questions to ask the user to configure the template.
    */
-  questions?: QuestionOptions[];
+  questions?: Question[];
 
   /**
    * The path to the template directory.
@@ -41,10 +53,6 @@ export interface TemplateConfiguration {
    * If left unset, this defaults to same directory where the template configuration file is.
    */
   sourcePath?: string;
-
-  include?: string[];
-
-  exclude?: string[];
 
   /**
    * The path where the template gets compiled to.
@@ -54,7 +62,7 @@ export interface TemplateConfiguration {
   /**
    * Options for loading the template.
    */
-  loadingOptions?: LoaderParseOptions;
+  templateOptions?: LoaderParseOptions;
 
   /**
    * Tasks that run before the template is configured. This only happens when the template is
@@ -96,6 +104,9 @@ export interface TemplateConfiguration {
   postUpdateTasks?: ((variables: { [key: string]: string }) => Promise<void> | void)[];
 }
 
+/**
+ * Helper function to define the configuration for a template.
+ */
 export function defineConfiguration(configuration: TemplateConfiguration) {
   return configuration;
 }
