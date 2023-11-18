@@ -19,10 +19,8 @@ You should have received a copy of the GNU General Public License along with Mol
 
 <!--![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)-->
 
-<!-- ![Mold logo](./docs/assets/mold-high-resolution-logo-white-transparent.png#gh-dark-mode-only | width=200)
-![Mold logo](./docs/assets/mold-high-resolution-logo-transparent.png#gh-light-mode-only | width=200) -->
-
-<img src="./docs/assets/mold-high-resolution-logo-transparent.png#gh-light-mode-only" width="16rem">Mold logo</img>
+![Mold logo](./docs/assets/mold-high-resolution-logo-white-transparent.png#gh-dark-mode-only)
+![Mold logo](./docs/assets/mold-high-resolution-logo-transparent.png#gh-light-mode-only)
 
 <p align="center"><i>Mold is a templating tool for projects.</i></p>
 
