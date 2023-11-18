@@ -28,6 +28,6 @@ You should have received a copy of the GNU General Public License along with Mol
 
 To install Mold, run:
 
-```shell
+```bash
 npm install -g @sophie-katz/mold
 ```
