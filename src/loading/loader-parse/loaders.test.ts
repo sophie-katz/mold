@@ -50,14 +50,14 @@ describe('Load file name', () => {
 describe('Load file raw', () => {
   test('Simple', async () => {
     const limitTracker = new LimitTracker({});
-    const templateFile = await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker);
+    const templateFile = await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker);
     expect(templateFile.pathRelative.render({})).toEqual('raw_file.txt');
     expect(templateFile.content.render({})).toEqual('hello, world');
   });
 
   test('With Handlebars path', async () => {
     const limitTracker = new LimitTracker({});
-    const templateFile = await loadFileRaw('examples/simple/{{ raw_name }}.txt', {}, limitTracker);
+    const templateFile = await loadFileRaw('examples/testing/{{ raw_name }}.txt', {}, limitTracker);
     expect(templateFile.pathRelative.render({ raw_name: 'handlebars_raw_file' })).toEqual(
       'handlebars_raw_file.txt',
     );
@@ -66,7 +66,7 @@ describe('Load file raw', () => {
 
   test('File content limit exact', async () => {
     const limitTracker = new LimitTracker({});
-    await loadFileRaw('examples/simple/raw_file.txt', { maxFileContentLength: 12 }, limitTracker);
+    await loadFileRaw('examples/testing/raw_file.txt', { maxFileContentLength: 12 }, limitTracker);
   });
 
   test('File content limit over', async () => {
@@ -74,38 +74,38 @@ describe('Load file raw', () => {
     await expect(
       async () =>
         await loadFileRaw(
-          'examples/simple/raw_file.txt',
+          'examples/testing/raw_file.txt',
           { maxFileContentLength: 11 },
           limitTracker,
         ),
     ).rejects.toThrow(
-      "max file content length limit exceeded for file: 'examples/simple/raw_file.txt' (max length: 11, actual length: 12)",
+      "max file content length limit exceeded for file: 'examples/testing/raw_file.txt' (max length: 11, actual length: 12)",
     );
   });
 
   test('Memory usage limit exact', async () => {
     const limitTracker = new LimitTracker({ maxMemoryUsage: 24 });
-    await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker);
+    await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker);
   });
 
   test('Memory usage limit over', async () => {
     const limitTracker = new LimitTracker({ maxMemoryUsage: 23 });
     await expect(
-      async () => await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker),
+      async () => await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker),
     ).rejects.toThrow('maximum memory usage limit exceeded: 23 bytes (0.000 MB)');
   });
 
   test('File count limit exact', async () => {
     const limitTracker = new LimitTracker({ maxFileCount: 2 });
-    await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker);
-    await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker);
+    await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker);
+    await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker);
   });
 
   test('File count limit over', async () => {
     const limitTracker = new LimitTracker({ maxFileCount: 1 });
-    await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker);
+    await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker);
     await expect(
-      async () => await loadFileRaw('examples/simple/raw_file.txt', {}, limitTracker),
+      async () => await loadFileRaw('examples/testing/raw_file.txt', {}, limitTracker),
     ).rejects.toThrow('maximum file count limit exceeded: 1 file and/or directory');
   });
 });
@@ -114,8 +114,8 @@ describe('Load file Handlebars', () => {
   test('Simple', async () => {
     const limitTracker = new LimitTracker({});
     const templateFile = await loadFileHandlebars(
-      'examples/simple/handlebars_file.txt.handlebars',
-      'examples/simple/handlebars_file.txt',
+      'examples/testing/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt',
       {},
       limitTracker,
     );
@@ -126,8 +126,8 @@ describe('Load file Handlebars', () => {
   test('With Handlebars path', async () => {
     const limitTracker = new LimitTracker({});
     const templateFile = await loadFileHandlebars(
-      'examples/simple/{{ handlebars_name }}.txt.handlebars',
-      'examples/simple/{{ handlebars_name }}.txt',
+      'examples/testing/{{ handlebars_name }}.txt.handlebars',
+      'examples/testing/{{ handlebars_name }}.txt',
       {},
       limitTracker,
     );
@@ -140,8 +140,8 @@ describe('Load file Handlebars', () => {
   test('File content limit exact', async () => {
     const limitTracker = new LimitTracker({});
     await loadFileHandlebars(
-      'examples/simple/handlebars_file.txt.handlebars',
-      'examples/simple/handlebars_file.txt',
+      'examples/testing/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt',
       { maxFileContentLength: 12 },
       limitTracker,
     );
@@ -152,21 +152,21 @@ describe('Load file Handlebars', () => {
     await expect(
       async () =>
         await loadFileHandlebars(
-          'examples/simple/handlebars_file.txt.handlebars',
-          'examples/simple/handlebars_file.txt',
+          'examples/testing/handlebars_file.txt.handlebars',
+          'examples/testing/handlebars_file.txt',
           { maxFileContentLength: 11 },
           limitTracker,
         ),
     ).rejects.toThrow(
-      "max file content length limit exceeded for file: 'examples/simple/handlebars_file.txt.handlebars' (max length: 11, actual length: 12)",
+      "max file content length limit exceeded for file: 'examples/testing/handlebars_file.txt.handlebars' (max length: 11, actual length: 12)",
     );
   });
 
   test('Memory usage limit exact', async () => {
     const limitTracker = new LimitTracker({ maxMemoryUsage: 31 });
     await loadFileHandlebars(
-      'examples/simple/handlebars_file.txt.handlebars',
-      'examples/simple/handlebars_file.txt',
+      'examples/testing/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt',
       {},
       limitTracker,
     );
@@ -177,8 +177,8 @@ describe('Load file Handlebars', () => {
     await expect(
       async () =>
         await loadFileHandlebars(
-          'examples/simple/handlebars_file.txt.handlebars',
-          'examples/simple/handlebars_file.txt',
+          'examples/testing/handlebars_file.txt.handlebars',
+          'examples/testing/handlebars_file.txt',
           {},
           limitTracker,
         ),
@@ -188,14 +188,14 @@ describe('Load file Handlebars', () => {
   test('File count limit exact', async () => {
     const limitTracker = new LimitTracker({ maxFileCount: 2 });
     await loadFileHandlebars(
-      'examples/simple/handlebars_file.txt.handlebars',
-      'examples/simple/handlebars_file.txt',
+      'examples/testing/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt',
       {},
       limitTracker,
     );
     await loadFileHandlebars(
-      'examples/simple/handlebars_file.txt.handlebars',
-      'examples/simple/handlebars_file.txt',
+      'examples/testing/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt',
       {},
       limitTracker,
     );
@@ -204,16 +204,16 @@ describe('Load file Handlebars', () => {
   test('File count limit over', async () => {
     const limitTracker = new LimitTracker({ maxFileCount: 1 });
     await loadFileHandlebars(
-      'examples/simple/handlebars_file.txt.handlebars',
-      'examples/simple/handlebars_file.txt',
+      'examples/testing/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt',
       {},
       limitTracker,
     );
     await expect(
       async () =>
         await loadFileHandlebars(
-          'examples/simple/handlebars_file.txt.handlebars',
-          'examples/simple/handlebars_file.txt',
+          'examples/testing/handlebars_file.txt.handlebars',
+          'examples/testing/handlebars_file.txt',
           {},
           limitTracker,
         ),
@@ -224,13 +224,13 @@ describe('Load file Handlebars', () => {
 describe('Load file', () => {
   test('No extension set', async () => {
     await expect(
-      async () => await loadFile('examples/simple/raw_file.txt', {}, new LimitTracker({})),
+      async () => await loadFile('examples/testing/raw_file.txt', {}, new LimitTracker({})),
     ).rejects.toThrow("'handlebarsExtension' must be set in options");
   });
 
   test('Raw file', async () => {
     const templateFile = await loadFile(
-      'examples/simple/raw_file.txt',
+      'examples/testing/raw_file.txt',
       { handlebarsExtension: '.handlebars' },
       new LimitTracker({}),
     );
@@ -241,7 +241,7 @@ describe('Load file', () => {
 
   test('Handlebars file', async () => {
     const templateFile = await loadFile(
-      'examples/simple/handlebars_file.txt.handlebars',
+      'examples/testing/handlebars_file.txt.handlebars',
       { handlebarsExtension: '.handlebars' },
       new LimitTracker({}),
     );
@@ -254,12 +254,12 @@ describe('Load file', () => {
 describe('Load directory', () => {
   test('Simple', async () => {
     const templateDirectory = await loadDirectory(
-      'examples/simple',
+      'examples/testing',
       { handlebarsExtension: '.handlebars' },
       new LimitTracker({}),
     );
 
-    expect(templateDirectory.pathRelative.render({})).toEqual('simple');
+    expect(templateDirectory.pathRelative.render({})).toEqual('testing');
     expect(templateDirectory.children.length).toEqual(4);
     expect(
       templateDirectory.children.findIndex(

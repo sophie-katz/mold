@@ -13,4 +13,16 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-console.log('hi');
+import { program } from 'commander';
+export { defineConfiguration } from './configuring/template-configuration';
+
+program
+  .name('mold')
+  .description('A templating tool for projects.')
+  .option('-f, --template-file <string>', 'The path to the template file.', './mold.config.ts');
+
+program.parse();
+
+const options = program.opts();
+
+console.log(options.templateFile);

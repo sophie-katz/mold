@@ -1,13 +1,13 @@
 {
   "name": "mold",
-  "type": "module",
   "engines": {
     "yarn": ">=4.0.0",
     "node": ">=18.18.2"
   },
   "scripts": {
     "start": "node ./dist/index.js",
-    "build": "tsc",
+    "dev": "ts-node ./src/index.ts",
+    "build": "tsc --declaration",
     "clean": "rm -r ./dist",
     "format": "prettier . --write",
     "lint:tsc": "tsc --noEmit",
@@ -29,6 +29,8 @@
     "vitest": "0.34.3"
   },
   "dependencies": {
+    "commander": "^11.1.0",
+    "enquirer": "^2.4.1",
     "handlebars": "^4.7.8"
   },
   "packageManager": "yarn@4.0.1"

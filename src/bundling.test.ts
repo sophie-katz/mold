@@ -23,7 +23,7 @@ import * as fsPromises from 'fs/promises';
 import { LoaderBundle } from './loading/loader-bundle';
 
 test('Simple', async () => {
-  const loader: Loader = new LoaderParse('examples/simple', {});
+  const loader: Loader = new LoaderParse('examples/testing', {});
 
   const templateDirectory = await loader.load();
 

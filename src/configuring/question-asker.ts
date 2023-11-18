@@ -13,6 +13,15 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-// import { Question } from '../domain/question';
+import { Question } from '../domain/question';
+import { prompt } from 'enquirer';
 
-// export async function askQuestions(questions: Question[]): Promise<{ [key: string]: string }> {}
+export function askQuestions(questions: Question[]): Promise<{ [key: string]: string }> {
+  return prompt(
+    questions.map((question) => ({
+      type: 'input',
+      name: question.key,
+      message: question.prompt,
+    })),
+  );
+}

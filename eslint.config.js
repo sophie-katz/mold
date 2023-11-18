@@ -1,9 +1,18 @@
-import ts from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+const ts = require('@typescript-eslint/eslint-plugin');
+const tsParser = require('@typescript-eslint/parser');
 
-export default [
+// const tsOverrideConfig = tsPlugin.configs['eslint-recommended'].overrides[0];
+// const tsRecommemdedConfig = tsPlugin.configs.recommended;
+// const files = ["**/*.ts", "**/*.tsx"];
+
+const files = ['./src/**/*.ts'];
+const ignores = ['.yarn/**'];
+
+module.exports = [
+  // 'eslint:recommended',
   {
-    files: ['src/**/*.ts'],
+    files,
+    ignores,
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -16,11 +25,14 @@ export default [
     },
     plugins: {
       '@typescript-eslint': ts,
-      ts,
-    },
-    rules: {
-      ...ts.configs['eslint-recommended'].rules,
-      ...ts.configs['recommended'].rules,
+      // ts,
     },
   },
+  // plugins: ['@typescript-eslint'],
+  // rules: {
+  // ...ts.configs['eslint-recommended'].rules,
+  // ...ts.configs['recommended'].rules,
+  { files, ignores, rules: ts.configs['eslint-recommended'].overrides[0].rules },
+  { files, ignores, rules: ts.configs.recommended.rules },
+  // },
 ];
