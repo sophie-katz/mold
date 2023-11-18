@@ -12,6 +12,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commander-js/extra-typings@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "@commander-js/extra-typings@npm:11.1.0"
+  peerDependencies:
+    commander: 11.1.x
+  checksum: df00ebed009edcd2d79cf4b17d869cea614a509fd4605d4cc04c4b1bf7319eccfda79751ac43d6122d57ab1828074233e829a46367cd7b1b5da9ddc83261d72b
+  languageName: node
+  linkType: hard
+
 "@esbuild/android-arm64@npm:0.18.20":
   version: 0.18.20
   resolution: "@esbuild/android-arm64@npm:0.18.20"
@@ -2449,6 +2458,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mold@workspace:."
   dependencies:
+    "@commander-js/extra-typings": "npm:^11.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.9.0"
     "@typescript-eslint/parser": "npm:^6.9.0"
     commander: "npm:^11.1.0"

@@ -13,13 +13,23 @@
 // You should have received a copy of the GNU General Public License along with Mold. If not, see
 // <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { registerCheck } from './commands/check';
-import { registerCreate } from './commands/create';
+import { program, Command } from '@commander-js/extra-typings';
+import { resolveConfigFile } from '../configuring/config-file-resolver';
 
-program.name('mold').description('A templating tool for projects.');
+/**
+ * Register the command with the global `program`.
+ */
+export function registerCheck() {
+  configure(program.command('check'));
+}
 
-registerCheck();
-registerCreate();
+function configure(command: Command) {
+  command
+    .description('Checks a project against a template')
+    .option('-f, --template-file <template file>', 'The path to the template configuration file')
+    .action(async (options) => {
+      const templateFile = await resolveConfigFile(options.templateFile);
 
-program.parse();
+      console.log(templateFile);
+    });
+}
