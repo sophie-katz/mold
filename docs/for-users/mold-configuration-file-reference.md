@@ -142,7 +142,7 @@ Questions to ask the user when creating a new project in order to configure the 
 
 See the [rule object](#rule-objects) section below for details.
 
-Rules to be run when checking a project against a template.
+Rules to be run when checking a project against a template or updating a project from a template.
 
 ## `source` (required)
 

@@ -8,6 +8,7 @@
     "bierner.markdown-emoji",
     "bierner.markdown-preview-github-styles",
     "esbenp.prettier-vscode",
-    "wayou.vscode-todo-highlight"
+    "wayou.vscode-todo-highlight",
+    "bierner.markdown-mermaid"
   ]
 }
