@@ -15,8 +15,6 @@ jobs:
 
       - name: Get Node.JS version
         id: get-node-version
-        outputs:
-          node-version: ${{ steps.get-node-version.outputs.node-version }}
         run: |
           echo "NODE_VERSION=$(jq .engines.node package.json | grep -o "\"[^0-9.]*[0-9]\+" | grep -o "[0-9]\+")" >> $GITHUB_OUTPUT
 
