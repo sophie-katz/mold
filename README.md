@@ -25,6 +25,14 @@ You should have received a copy of the GNU General Public License along with Mol
 - [Getting started](#getting-started)
   - [Documentation](#documentation)
 - [Usage](#usage)
+  - [Creating a project](#creating-a-project)
+  - [Checking for consistency](#checking-for-consistency)
+  - [Updating the project](#updating-the-project)
+  - [Updating the template from a project](#updating-the-template-from-a-project)
+- [Writing templates](#writing-templates)
+  - [Questions](#questions)
+  - [Tasks](#tasks)
+  - [Rules](#rules)
 
 ---
 
@@ -48,6 +56,8 @@ npm install -g @sophie-katz/mold
 
 Mold is a tool to create templates for projects and then use those templates to keep code consistent
 with those templates.
+
+## Creating a project
 
 For example, let's use this Node.JS template (_this template is yet to be created_). We can create a
 project with this command:
@@ -264,3 +274,8 @@ export default defineConfiguration({
 Now after creating a new project, there will be a `.git` directory freshly initialized!
 
 See the [Task objects](./docs/for-users/mold-configuration-file-reference.md#task-objects) part of the configuration file reference for more info.
+
+## Rules
+
+> [!IMPORTANT]  
+> This is under active development.
