@@ -31,4 +31,7 @@ jobs:
 
       - name: Run CI script
         run: |
+          pwd
+          ls -lah
+
           yarn run ci
