@@ -46,8 +46,12 @@ npm install -g @sophie-katz/mold
 
 ## Documentation
 
-- [User guide](./docs/for-users/guide.md)
-- [Developer documentation](./docs/for-developers/overview.md)
+- [User guide](./docs/for-users/)
+  - [Mold configuration file reference](./docs/for-users//mold-configuration-file-reference.md)
+  - [Custom rules](./docs/for-users/custom-rules.md)
+  - [Custom plugins](./docs/for-users/custom-plugins.md)
+- [Developer documentation](./docs/for-developers/)
+  - [Overview](./docs/for-developers//overview.md)
 
 # Usage
 
