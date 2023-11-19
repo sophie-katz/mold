@@ -19,6 +19,15 @@ import { registerCreate } from './commands/create';
 
 program.name('mold').description('A templating tool for projects.');
 
+// prettier-ignore
+program.addHelpText("before", ` __  __    ____    _        _____
+|  \\/  |  / __ \\  | |      |  __ \\
+| \\  / | | |  | | | |      | |  | |
+| |\\/| | | |  | | | |      | |  | |
+| |  | | | |__| | | |____  | |__| |
+|_|  |_|  \\____/  |______| |_____/
+`);
+
 registerCheck();
 registerCreate();
 

@@ -15,9 +15,7 @@ You should have received a copy of the GNU General Public License along with Mol
 <https://www.gnu.org/licenses/>.
 -->
 
-<!-- Badges from https://github.com/Ileriayo/markdown-badges -->
-
-<!--![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)-->
+![GitHub License](https://img.shields.io/github/license/sophie-katz/mold)
 
 <p align="center"><img src="https://raw.githubusercontent.com/sophie-katz/mold/main/docs/assets/mold-high-resolution-logo-transparent.png#gh-light-mode-only" width="400rem" alt="Mold logo" /> <img src="https://raw.githubusercontent.com/sophie-katz/mold/main/docs/assets/mold-high-resolution-logo-white-transparent.png#gh-dark-mode-only" width="400rem" alt="Mold logo" /><br /><br />Mold is a templating tool for projects.
 </p>
@@ -231,7 +229,7 @@ It will create a file `package.json` with these contents:
 }
 ```
 
-You can read more about how to use questions and their answers in the [Questions and Answers](./docs/for-users/questions-and-answers.md) guide.
+You can read more about how to use questions and their answers in the [Question objects](./docs/for-users/mold-configuration-file-reference.md#question-objects) section of the configuration file reference.
 
 ## Tasks
 
@@ -265,4 +263,4 @@ export default defineConfiguration({
 
 Now after creating a new project, there will be a `.git` directory freshly initialized!
 
-See the [tasks](./docs/for-users/tasks.md) guide to read more.
+See the [Task objects](./docs/for-users/mold-configuration-file-reference.md#task-objects) part of the configuration file reference for more info.
