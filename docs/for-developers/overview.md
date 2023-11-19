@@ -55,34 +55,49 @@ yarn run dev --help
 ## Workflow
 
 ```mermaid
-%%{init: {"flowchart": {"htmlLabels": false}} }%%
+graph TB
+  classDef input fill:#55b;
+  classDef loader fill:#b5b;
+  classDef intermediate fill:#b55;
+  classDef output fill:#5b5,color:#000;
 
-graph LR
-    config["mold.config.ts"] --> configLoader([Configuration loader]);
-    template["template/"] -------> templateLoader([Template loader]);
-    metadata[".mold.json (optional)"] -------> metadataLoader(["Metadata loader (optional)"]);
+  config["mold.config.ts"] --> configLoader;
+  class config input;
 
-    subgraph Loading phase
-        configLoader --> pluginLoader([Plugin loader]);
-        configLoader --> questionList[Question list];
-        configLoader --> templateLoader;
-        templateLoader --> templateModelTree[Template model tree];
-        metadataLoader --> answersObject[Answers object];
-        metadataLoader --> questionAsker;
-    end
+  template["template/"] --> templateLoader;
+  class template input;
 
-    subgraph "Asking phase (optional)"
-        questionList -----> questionAsker([Question asker]);
-        questionAsker --> answersObject[Answers object];
-    end
+  metadata[".mold.json (optional)"] --> metadataLoader;
+  class metadata input;
 
-    subgraph Rendering phase
-        templateModelTree --> templateRenderer([Template renderer]);
-        answersObject --> templateRenderer;
-        templateRenderer --> projectComparer(["Project updater (optional)"])
-    end
+  configLoader([Configuration loader]) --> pluginLoader([Plugin loader]);
+  configLoader --> questionList;
+  configLoader --> templateLoader;
+  class configLoader loader;
+  class pluginLoader loader;
 
-    projectComparer --> projectDirectory[Project directory];
+  templateLoader([Template loader]) --> templateModelTree;
+  class templateLoader loader;
+
+  metadataLoader(["Metadata loader (optional)"]) --> answersObject;
+  metadataLoader --> questionAsker;
+  class metadataLoader loader;
+
+  questionList[Question list] --> questionAsker;
+  class questionList intermediate;
+
+  questionAsker([Question asker]) --> answersObject;
+
+  templateModelTree[Template model tree] --> templateRenderer;
+  class templateModelTree intermediate;
+
+  answersObject[Answers object] --> templateRenderer;
+  class answersObject intermediate;
+
+  templateRenderer([Template renderer]) --> projectComparer;
+
+  projectComparer(["Project updater (optional)"]) --> projectDirectory[Project directory];
+  class projectDirectory output;
 ```
 
 ## Inputs
