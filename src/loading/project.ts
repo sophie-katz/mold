@@ -13,5 +13,17 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface FileTreeDiff<FileType, DirectoryType> {}
+import { ErrorNotImplemented } from '../common/errors';
+import { Project } from '../domain/project/project';
+import { LoaderBase } from './base';
+
+/**
+ * Load project.
+ */
+export class LoaderProject extends LoaderBase<Project> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public override load(path: string): Promise<Project> {
+    // TODO: This is scaffold code and needs to be implemented!
+    throw new ErrorNotImplemented();
+  }
+}

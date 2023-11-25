@@ -13,14 +13,17 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-export interface Configuration {}
+import { ErrorNotImplemented } from '../common/errors';
+import { Configuration } from '../domain/configuration/configuration';
+import { LoaderBase } from './base';
 
 /**
- * Helper function to define the configuration for a template.
- *
- * @param configuration - The configuration to be defined.
- * @returns The same configuration.
+ * Load Mold configuration.
  */
-export function defineConfiguration(configuration: Configuration) {
-  return configuration;
+export class LoaderConfiguration extends LoaderBase<Configuration> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public override load(path: string): Promise<Configuration> {
+    // TODO: This is scaffold code and needs to be implemented!
+    throw new ErrorNotImplemented();
+  }
 }

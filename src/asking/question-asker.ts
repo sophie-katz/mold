@@ -16,6 +16,7 @@
 import { Question } from '../domain/configuration/question';
 import { AnswerObjectType } from '../domain/answer';
 import { ErrorNotImplemented } from '../common/errors';
+import { prompt } from 'enquirer';
 
 /**
  * A class to ask questions to the user to help configure the template.
@@ -42,5 +43,15 @@ export class QuestionAsker {
   public async askAllUnanswered(): Promise<AnswerObjectType> {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();
+  }
+
+  private async askQuestions(unansweredQuestions: Question[]): Promise<AnswerObjectType> {
+    return prompt(
+      unansweredQuestions.map((question) => ({
+        type: 'input',
+        name: question.key,
+        message: question.prompt,
+      })),
+    );
   }
 }

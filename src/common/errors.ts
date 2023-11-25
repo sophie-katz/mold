@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
+import { escapeString } from './string-escaping';
+
 /**
  * An error to throw when reaching code that hasn't been implemented yet.
  *
@@ -29,5 +31,66 @@ export class ErrorNotImplemented extends Error {
   constructor() {
     super('Not implemented');
     this.name = 'NotImplementedError';
+  }
+}
+
+/**
+ * An error that occurs when a file in a template is over the configured size limit.
+ */
+export class ErrorLoaderParseFileContentLength extends Error {
+  /**
+   * Constructor.
+   * @param path - The path to the file.
+   * @param maxLength - The maximum allowed length.
+   * @param actualLength - The actual length of the file.
+   */
+  constructor(
+    public readonly path: string,
+    public readonly maxLength: number,
+    public readonly actualLength: number,
+  ) {
+    super(
+      `max file content length limit exceeded for file: '${escapeString(
+        path,
+      )}' (max length: ${maxLength}, actual length: ${actualLength})`,
+    );
+    this.name = 'LoaderParseErrorFileContentLength';
+  }
+}
+
+/**
+ * An error that occurs when the number of files in a template is over the configured limit.
+ */
+export class ErrorLoaderParseFileCount extends Error {
+  /**
+   * Constructor.
+   * @param maxCount - The maximum allowed number of files.
+   */
+  constructor(public readonly maxCount: number) {
+    super(
+      `maximum file count limit exceeded: ${maxCount} ${
+        maxCount == 1 ? 'file and/or directory' : 'files and/or directories'
+      }`,
+    );
+    this.name = 'LoaderParseErrorFileCount';
+  }
+}
+
+/**
+ * An error that occurs when the memory usage of a template is over the configured limit. See
+ * `LoaderParseOptions.maxMemoryUsage` for details.
+ */
+export class ErrorLoaderParseMemoryUsage extends Error {
+  /**
+   * Constructor.
+   * @param maxMemoryUsage - The maximum allowed memory usage.
+   */
+  constructor(public readonly maxMemoryUsage: number) {
+    super(
+      `maximum memory usage limit exceeded: ${maxMemoryUsage} byte${
+        maxMemoryUsage == 1 ? '' : 's'
+      } (${(maxMemoryUsage / (1024 * 1024)).toFixed(3)} MB)`,
+    );
+    this.name = 'LoaderParseErrorMemoryUsage';
   }
 }

@@ -13,14 +13,28 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-export interface Configuration {}
-
 /**
- * Helper function to define the configuration for a template.
+ * Base class for loaders.
  *
- * @param configuration - The configuration to be defined.
- * @returns The same configuration.
+ * @param ValueType - The type of value that is loaded.
  */
-export function defineConfiguration(configuration: Configuration) {
-  return configuration;
+export abstract class LoaderBase<ValueType> {
+  private hasLoaded: boolean = false;
+
+  /**
+   * Load a value from the given path.
+   * @param path - The path from which to load.
+   * @returns The loaded value.
+   */
+  public load(path: string): Promise<ValueType> {
+    if (this.hasLoaded) {
+      throw new Error('loader has already loaded - loaders are single-use');
+    }
+
+    this.hasLoaded = true;
+
+    return this.onLoad(path);
+  }
+
+  protected abstract onLoad(path: string): Promise<ValueType>;
 }
