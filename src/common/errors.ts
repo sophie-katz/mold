@@ -16,12 +16,14 @@
 /**
  * An error to throw when reaching code that hasn't been implemented yet.
  *
- * @example
+ * @example A basic example of usage:
  *
+ * ```
  * function scaffoldCode() {
  *   // TODO: This is scaffold code and needs to be implemented!
  *   throw new ErrorNotImplemented();
  * }
+ * ```
  */
 export class ErrorNotImplemented extends Error {
   constructor() {

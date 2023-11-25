@@ -24,10 +24,11 @@ import { ComparerBase } from './base';
 export class ComparerProject extends ComparerBase<Project, ProjectDiff> {
   /**
    * Compares two values and returns a diff.
-   * @param lhs The left-hand side value.
-   * @param rhs The right-hand side value.
+   * @param lhs - The left-hand side value.
+   * @param rhs - The right-hand side value.
    * @returns A diff between `lhs` and `rhs`.
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public override async compare(lhs: Project, rhs: Project): Promise<ProjectDiff> {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();

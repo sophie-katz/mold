@@ -19,6 +19,7 @@ import { Template } from '../domain/template/template';
 import { RendererBase } from './base';
 
 export abstract class RendererTemplate extends RendererBase<Template, Project> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public override render(input: Template): Project {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();

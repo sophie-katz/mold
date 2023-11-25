@@ -13,4 +13,5 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface FileTreeDiff<FileType, DirectoryType> {}

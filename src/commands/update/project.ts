@@ -22,6 +22,7 @@ update
   .description('Update a project from a template.')
   .addArgument(ARGUMENT_TEMPLATE)
   .addArgument(ARGUMENT_PROJECT_DIRECTORY)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   .action(async (template, projectDirectory) => {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();

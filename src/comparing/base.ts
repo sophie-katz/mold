@@ -19,8 +19,8 @@
 export abstract class ComparerBase<ValueType, DiffType> {
   /**
    * Compares two values and returns a diff.
-   * @param lhs The left-hand side value.
-   * @param rhs The right-hand side value.
+   * @param lhs - The left-hand side value.
+   * @param rhs - The right-hand side value.
    * @returns A diff between `lhs` and `rhs`.
    */
   public abstract compare(lhs: ValueType, rhs: ValueType): Promise<DiffType>;

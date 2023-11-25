@@ -16,11 +16,10 @@
   "editor.formatOnSave": true,
   "editor.rulers": [90],
   "cSpell.words": ["renderable", "templating"],
-  "cSpell.ignoreWords": ["Katz"],
+  "cSpell.ignoreWords": ["Katz", "tsdoc"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.enable": true,
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "eslint.experimental.useFlatConfig": true,
   "search.exclude": {
     "**/.yarn": true,
     "**/node_modules": true

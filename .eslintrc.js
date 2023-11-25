@@ -13,17 +13,19 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
-
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  extends: ['plugin:@typescript-eslint/strict', 'plugin:jsdoc/recommended'],
+  plugins: ['tsdoc', 'jsdoc'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  rules: {
+    'tsdoc/syntax': 'warn',
+    'jsdoc/require-description': 1,
+    'jsdoc/require-param-type': 0,
+    'jsdoc/tag-lines': 0,
+    'jsdoc/require-returns-type': 0,
+  },
+};

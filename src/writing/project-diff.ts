@@ -18,10 +18,7 @@ import { ProjectDiff } from '../domain/project/diff';
 import { WriterBase } from './base';
 
 export abstract class WriterProjectDiff extends WriterBase<ProjectDiff> {
-  constructor(targetPath: string) {
-    super(targetPath);
-  }
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public override async write(input: ProjectDiff): Promise<void> {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();

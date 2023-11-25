@@ -23,8 +23,8 @@ import { ErrorNotImplemented } from '../common/errors';
 export class QuestionAsker {
   /**
    * Constructor.
-   * @param questions The full list of questions to ask, in order.
-   * @param answersInitial The initial answers to use for the questions.
+   * @param questions - The full list of questions to ask, in order.
+   * @param answersInitial - The initial answers to use for the questions.
    */
   constructor(
     private readonly questions: Question[],
