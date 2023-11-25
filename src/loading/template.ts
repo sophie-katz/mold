@@ -13,22 +13,17 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
 import { ErrorNotImplemented } from '../common/errors';
-import {
-  ARGUMENT_TEMPLATE,
-  ARGUMENT_PROJECT_DIRECTORY,
-  OPTION_CONFIG_FILE,
-} from './shared';
+import { Template } from '../domain/template/template';
+import { LoaderBase } from './base';
 
-program
-  .command('create')
-  .description('Create a new project from a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  .addOption(OPTION_CONFIG_FILE)
+/**
+ * Load Mold template.
+ */
+export class LoaderTemplate extends LoaderBase<Template> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
+  public override onLoad(path: string): Promise<Template> {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();
-  });
+  }
+}

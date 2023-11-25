@@ -13,5 +13,33 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface FileTree<FileType, DirectoryType> {}
+/**
+ * Mode for file content to indicate how it should be rendered.
+ */
+export enum FileContentMode {
+  /**
+   * Raw text that should be copied as-is.
+   */
+  Raw = 'Raw',
+
+  /**
+   * Templated text that should be rendered with Handlebars.
+   */
+  Handlebars = 'Handlebars',
+}
+
+/**
+ * Represents the content of a file in the template.
+ */
+export class FileContent {
+  /**
+   * Constructor.
+   *
+   * @param content - The text content of the file.
+   * @param mode - The mode of the file content.
+   */
+  public constructor(
+    public readonly content: string,
+    public readonly mode: FileContentMode,
+  ) {}
+}

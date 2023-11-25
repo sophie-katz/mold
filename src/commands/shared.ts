@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { Argument } from '@commander-js/extra-typings';
+import { Argument, Option } from '@commander-js/extra-typings';
 
 export const ARGUMENT_TEMPLATE = new Argument(
   '<template>',
@@ -23,4 +23,9 @@ export const ARGUMENT_TEMPLATE = new Argument(
 export const ARGUMENT_PROJECT_DIRECTORY = new Argument(
   '<project directory>',
   'The project directory.',
+);
+
+export const OPTION_CONFIG_FILE = new Option(
+  '-f, --config-file <config file>',
+  'The path to the configuration file',
 );

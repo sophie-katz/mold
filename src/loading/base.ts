@@ -13,22 +13,28 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import {
-  ARGUMENT_TEMPLATE,
-  ARGUMENT_PROJECT_DIRECTORY,
-  OPTION_CONFIG_FILE,
-} from './shared';
+/**
+ * Base class for loaders.
+ *
+ * @param ValueType - The type of value that is loaded.
+ */
+export abstract class LoaderBase<ValueType> {
+  private hasLoaded: boolean = false;
 
-program
-  .command('create')
-  .description('Create a new project from a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  .addOption(OPTION_CONFIG_FILE)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+  /**
+   * Load a value from the given path.
+   * @param path - The path from which to load.
+   * @returns The loaded value.
+   */
+  public load(path: string): Promise<ValueType> {
+    if (this.hasLoaded) {
+      throw new Error('loader has already loaded - loaders are single-use');
+    }
+
+    this.hasLoaded = true;
+
+    return this.onLoad(path);
+  }
+
+  protected abstract onLoad(path: string): Promise<ValueType>;
+}

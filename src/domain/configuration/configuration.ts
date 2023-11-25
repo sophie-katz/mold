@@ -14,3 +14,13 @@
 // not, see <https://www.gnu.org/licenses/>.
 
 export interface Configuration {}
+
+/**
+ * Helper function to define the configuration for a template.
+ *
+ * @param configuration - The configuration to be defined.
+ * @returns The same configuration.
+ */
+export function defineConfiguration(configuration: Configuration) {
+  return configuration;
+}

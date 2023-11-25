@@ -15,4 +15,5 @@
 
 export interface Question {
   key: string;
+  prompt: string;
 }
