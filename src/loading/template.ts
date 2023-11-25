@@ -22,7 +22,7 @@ import { LoaderBase } from './base';
  */
 export class LoaderTemplate extends LoaderBase<Template> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public override load(path: string): Promise<Template> {
+  public override onLoad(path: string): Promise<Template> {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();
   }
