@@ -5,16 +5,16 @@
     "node": "^20.9.0"
   },
   "scripts": {
-    "start": "node ./dist/index.js",
-    "dev": "ts-node ./src/index.ts",
+    "start": "node ./dist/main.js",
+    "dev": "ts-node ./src/main.ts",
     "build": "tsc --declaration",
     "clean": "rm -r ./dist",
     "format": "prettier . --write",
     "lint:tsc": "tsc --noEmit",
-    "lint:eslint": "ESLINT_USE_FLAT_CONFIG=true eslint .",
+    "lint:eslint": "eslint . --max-warnings=0",
     "lint:prettier": "prettier . --check",
     "lint": "yarn run lint:tsc && yarn run lint:eslint && yarn run lint:prettier",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "ci": "yarn run lint && yarn run test"
   },
   "devDependencies": {
@@ -23,8 +23,10 @@
     "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsdoc": "^46.9.0",
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-tsdoc": "^0.2.17",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "vitest": "0.34.3"

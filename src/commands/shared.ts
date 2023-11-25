@@ -13,17 +13,14 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
+import { Argument } from '@commander-js/extra-typings';
 
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+export const ARGUMENT_TEMPLATE = new Argument(
+  '<template>',
+  'The Mold template directory or URL.',
+);
+
+export const ARGUMENT_PROJECT_DIRECTORY = new Argument(
+  '<project directory>',
+  'The project directory.',
+);

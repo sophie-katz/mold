@@ -13,17 +13,15 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
 import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
+import { Project } from '../domain/project/project';
+import { Template } from '../domain/template/template';
+import { RendererBase } from './base';
 
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
+export abstract class RendererTemplate extends RendererBase<Template, Project> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
+  public override render(input: Template): Project {
     // TODO: This is scaffold code and needs to be implemented!
     throw new ErrorNotImplemented();
-  });
+  }
+}

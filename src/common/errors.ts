@@ -13,17 +13,21 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
-
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+/**
+ * An error to throw when reaching code that hasn't been implemented yet.
+ *
+ * @example A basic example of usage:
+ *
+ * ```
+ * function scaffoldCode() {
+ *   // TODO: This is scaffold code and needs to be implemented!
+ *   throw new ErrorNotImplemented();
+ * }
+ * ```
+ */
+export class ErrorNotImplemented extends Error {
+  constructor() {
+    super('Not implemented');
+    this.name = 'NotImplementedError';
+  }
+}

@@ -14,16 +14,22 @@
 // not, see <https://www.gnu.org/licenses/>.
 
 import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
+import './commands/update/project';
+import './commands/update/template';
+import './commands/check';
+import './commands/create';
 
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+program.name('mold').description('A templating tool for projects.');
+
+// prettier-ignore
+{
+program.addHelpText("before", ` __  __    ____    _        _____
+|  \\/  |  / __ \\  | |      |  __ \\
+| \\  / | | |  | | | |      | |  | |
+| |\\/| | | |  | | | |      | |  | |
+| |  | | | |__| | | |____  | |__| |
+|_|  |_|  \\____/  |______| |_____/
+`);
+}
+
+program.parse();
