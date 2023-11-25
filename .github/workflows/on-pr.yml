@@ -31,8 +31,8 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          yarn install --frozen-lockfile
+          yarn install --immutable
 
-      # - name: Run CI script
-      #   run: |
-      #     yarn run ci
+      - name: Run CI script
+        run: |
+          yarn run lint
