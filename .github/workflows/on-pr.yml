@@ -22,12 +22,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ steps.get-node-version.outputs.NODE_VERSION }}
-          cache: yarn
-          cache-dependency-path: yarn.lock
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ steps.get-node-version.outputs.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install project dependencies
         run: |
-          yarn install --frozen-lockfile
+          yarn install --immutable
 
       - name: Run CI script
         run: |
