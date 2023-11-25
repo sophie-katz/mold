@@ -35,4 +35,4 @@ jobs:
 
       - name: Run CI script
         run: |
-          yarn run lint
+          yarn run ci
