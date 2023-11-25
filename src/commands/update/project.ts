@@ -13,13 +13,13 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
+import { update } from './update';
+import { ErrorNotImplemented } from '../../common/errors';
+import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from '../shared';
 
-program
-  .command('check')
-  .description('Check that a project matches a template.')
+update
+  .command('project')
+  .description('Update a project from a template.')
   .addArgument(ARGUMENT_TEMPLATE)
   .addArgument(ARGUMENT_PROJECT_DIRECTORY)
   .action(async (template, projectDirectory) => {

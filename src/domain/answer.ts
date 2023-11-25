@@ -13,16 +13,12 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
+/**
+ * The different types that an answer can be.
+ */
+export type AnswerUnionType = boolean | number | string;
 
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+/**
+ * An answer object which represents all of the answers to questions in a template.
+ */
+export type AnswerObjectType = { [key: string]: AnswerUnionType };

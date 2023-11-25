@@ -13,16 +13,15 @@
 // You should have received a copy of the GNU General Public License along with Mold. If
 // not, see <https://www.gnu.org/licenses/>.
 
-import { program } from '@commander-js/extra-typings';
-import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
-
-program
-  .command('check')
-  .description('Check that a project matches a template.')
-  .addArgument(ARGUMENT_TEMPLATE)
-  .addArgument(ARGUMENT_PROJECT_DIRECTORY)
-  .action(async (template, projectDirectory) => {
-    // TODO: This is scaffold code and needs to be implemented!
-    throw new ErrorNotImplemented();
-  });
+/**
+ * A comparer that compares two values and returns a diff.
+ */
+export abstract class ComparerBase<ValueType, DiffType> {
+  /**
+   * Compares two values and returns a diff.
+   * @param lhs The left-hand side value.
+   * @param rhs The right-hand side value.
+   * @returns A diff between `lhs` and `rhs`.
+   */
+  public abstract compare(lhs: ValueType, rhs: ValueType): Promise<DiffType>;
+}

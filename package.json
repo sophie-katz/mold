@@ -5,8 +5,8 @@
     "node": "^20.9.0"
   },
   "scripts": {
-    "start": "node ./dist/index.js",
-    "dev": "ts-node ./src/index.ts",
+    "start": "node ./dist/main.js",
+    "dev": "ts-node ./src/main.ts",
     "build": "tsc --declaration",
     "clean": "rm -r ./dist",
     "format": "prettier . --write",
