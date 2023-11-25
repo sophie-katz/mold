@@ -15,13 +15,18 @@
 
 import { program } from '@commander-js/extra-typings';
 import { ErrorNotImplemented } from '../common/errors';
-import { ARGUMENT_TEMPLATE, ARGUMENT_PROJECT_DIRECTORY } from './shared';
+import {
+  ARGUMENT_TEMPLATE,
+  ARGUMENT_PROJECT_DIRECTORY,
+  OPTION_CONFIG_FILE,
+} from './shared';
 
 program
   .command('check')
   .description('Check that a project matches a template.')
   .addArgument(ARGUMENT_TEMPLATE)
   .addArgument(ARGUMENT_PROJECT_DIRECTORY)
+  .addOption(OPTION_CONFIG_FILE)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   .action(async (template, projectDirectory) => {
     // TODO: This is scaffold code and needs to be implemented!
